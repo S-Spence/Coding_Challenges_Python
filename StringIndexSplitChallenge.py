@@ -6,6 +6,7 @@
 #              Next, print the characters with even indices as one word and the characters with odd incides as another word
 #              Repeat for the number of strings the user passes
 #---------------------------------------------------------------------------------------------------------------------------------------
+import sys
 
 # Take T strings and print the odd and even indexed integers on the same line, 
 # separate by a space to split the evens and odds. 
@@ -42,6 +43,6 @@ if __name__ == '__main__':
         str_list.append(input().replace(" ", ""))
     
     split_strings(str_list)
-        
+    sys.exit()   
 
     
