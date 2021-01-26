@@ -1,11 +1,11 @@
 #-----------------------------------------------------------------------------------------------------------------------------------------
 # Author: Sarah Spence
 # Date: 2021-01-20
-# Description: Randsom Note Challenge
-#              Take input for number of words in each string. Then, take input for two strings, one a note and one a magazine
-#              Next, determine if you can form the note from the words in the magazine list
+# Title: Randsom Note Challenge
+# Description: Take input for number of words in each string. Then, take input for two strings, one a note, and the other a magazine.
+#              Next, determine if you can form the note from the words in the magazine list.
 #---------------------------------------------------------------------------------------------------------------------------------------
-
+import sys
 from collections import Counter
 
 # Complete the checkMagazine function below
@@ -41,3 +41,4 @@ if __name__ == '__main__':
 
     # Check if the note can be formed from the words in the magazine list
     checkMagazine(magazine, note)
+    sys.exit()
