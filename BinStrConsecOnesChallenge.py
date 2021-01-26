@@ -1,7 +1,7 @@
 #!/bin/python3
 #-----------------------------------------------------------------------------------------------------------------------------------------
 # Author: Sarah Spence
-# Date: 2021-01-20
+# Date: 2021-01-25
 # Title: Count Consecutive Ones in a Binary String Challenge
 # Description: Take an integer n and convert it to a binary string. Then, count the max occurences of consecutive ones in the 
 #              binary string.
