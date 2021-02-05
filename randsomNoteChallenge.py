@@ -1,4 +1,5 @@
-#-----------------------------------------------------------------------------------------------------------------------------------------
+#!/bin/python3
+# -----------------------------------------------------------------------------------------------------------------------------------------
 # Author: Sarah Spence
 # Date: 2021-01-20
 # Title: Randsom Note Challenge
@@ -22,7 +23,7 @@ def checkMagazine(magazine, note):
         print("No")
     
        
-if __name__ == '__main__':
+def main():
 
     # Take string input for the number of words in a magazine, and the number of words in a note, separate by a space
     mn = input().split()
@@ -41,4 +42,6 @@ if __name__ == '__main__':
 
     # Check if the note can be formed from the words in the magazine list
     checkMagazine(magazine, note)
-    sys.exit()
+
+if __name__ == '__main__':  
+    sys.exit(main())
