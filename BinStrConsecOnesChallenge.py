@@ -22,9 +22,8 @@ def CountConsecOnes(binary_str):
             max_ones = len(str)
     return max_ones
     
-    
-if __name__ == '__main__':
-    # Take integer input
+def main():
+      # Take integer input
     n = int(input())
    
     # Return the binary representation of the integer n
@@ -33,5 +32,7 @@ if __name__ == '__main__':
     # Print highest occurence of consecutive ones
     max_consec = CountConsecOnes(binary_rep)
     print(max_consec)
-    sys.exit()
+
+if __name__ == '__main__':
+    sys.exit(main())
     

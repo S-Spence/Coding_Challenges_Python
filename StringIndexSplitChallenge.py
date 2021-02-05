@@ -1,3 +1,4 @@
+#!/bin/python3
 #-----------------------------------------------------------------------------------------------------------------------------------------
 # Author: Sarah Spence
 # Date: 2021-01-20
@@ -30,9 +31,7 @@ def split_strings(str_list):
         print(f"{even_str} {odd_str}")
     return
 
-
-
-if __name__ == '__main__':
+def main():
     str_list = [] # Define list of strings
     
     # Take input for number of strings
@@ -43,6 +42,6 @@ if __name__ == '__main__':
         str_list.append(input().replace(" ", ""))
     
     split_strings(str_list)
-    sys.exit()   
 
-    
+if __name__ == '__main__':
+    sys.exit(main())
