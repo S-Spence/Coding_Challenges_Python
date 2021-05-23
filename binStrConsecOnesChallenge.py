@@ -1,4 +1,4 @@
-#!/bin/python3
+#!/usr/bin/env python
 #-----------------------------------------------------------------------------------------------------------------------------------------
 # Author: Sarah Spence
 # Date: 2021-01-25
@@ -8,30 +8,33 @@
 #---------------------------------------------------------------------------------------------------------------------------------------
 import sys
 
+
 # Find max consecutive ones in a binary string
-def CountConsecOnes(binary_str):
+def count_consec_ones(binary_str: str) -> int:
+    """This function counts the consecutive ones in a binary string"""
     # Value to count ones
     max_ones = 0   
-    
     # Strip leading and trailing zeros and split at zeros
     binary_str = binary_str.strip("0").split("0")
-    
     # Count consecutive ones
     for str in binary_str:
         if len(str) > max_ones:
             max_ones = len(str)
     return max_ones
-    
-def main():
+
+
+# Main function   
+def main() -> None:
+    """Main function for quick testing"""
       # Take integer input
-    n = int(input())
-   
+    num = int(input())
     # Return the binary representation of the integer n
-    binary_rep = "{0:b}".format(n)
-    
+    binary_rep = "{0:b}".format(num)
     # Print highest occurence of consecutive ones
-    max_consec = CountConsecOnes(binary_rep)
+    max_consec = count_consec_ones(binary_rep)
     print(max_consec)
+    return
+
 
 if __name__ == '__main__':
     sys.exit(main())   

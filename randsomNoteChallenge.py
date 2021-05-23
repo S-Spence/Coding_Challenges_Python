@@ -1,4 +1,4 @@
-#!/bin/python3
+#!/usr/bin/env python
 # -----------------------------------------------------------------------------------------------------------------------------------------
 # Author: Sarah Spence
 # Date: 2021-01-20
@@ -9,21 +9,38 @@
 import sys
 from collections import Counter
 
+
 # Complete the checkMagazine function below
-def checkMagazine(magazine, note):
+def check_magazine(magazine: str, note: str) -> None:
+    """Check if a randsom note can be made of words in a string."""
+    magazine_dict = dict()
+    note_dict = dict()
     
-    # Use counter to count occurences of words in the lists
-    # Remove all matches from randsom note, returns empty list if all matches found
-    removeMatches = Counter(note) - Counter(magazine)
+    # Put lists into dictionaries
+    for letter in magazine:
+        if letter in magazine_dict:
+            magazine_dict[letter] += 1
+        else:
+            magazine_dict[letter] = 1 
+    
+    for letter in note:
+        if letter in note_dict:
+            note_dict[letter] += 1
+        else:
+            note_dict[letter] = 1
+        
+    # Remove all matches from randsom note, returns empty dict if all matches found
+    remove_matches = note_dict - magazine_dict
     
     # Check if list is empty
-    if len(removeMatches) == 0:
-        print("Yes")
-    else:
+    if remove_matches:
         print("No")
+    else:
+        print("Yes")
+    return
     
        
-def main():
+def main() -> None:
 
     # Take string input for the number of words in a magazine, and the number of words in a note, separate by a space
     mn = input().split()
@@ -41,7 +58,9 @@ def main():
     note = input().rstrip().split()
 
     # Check if the note can be formed from the words in the magazine list
-    checkMagazine(magazine, note)
+    check_magazine(magazine, note)
+    return
+
 
 if __name__ == '__main__':  
     sys.exit(main())

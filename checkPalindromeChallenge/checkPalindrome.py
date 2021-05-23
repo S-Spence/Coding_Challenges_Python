@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/env python
 #-----------------------------------------------------------------------------------------------------------------------------------------
 # Author: Sarah Spence & Copyright: HackerRank
 # Date: 2021-02-05
@@ -10,38 +10,42 @@ import sys
 import os
 import checkPalindromeClass as cp
 
-def main():  
 
+# Main function
+def main() -> None:  
+    """Main function to check if a string is a palindrome"""
     # read the string s
     s = input()
 
-    #Create the check palindrome class object
-    obj= cp.checkPalindrome()   
+    # Create the check palindrome class object
+    obj= cp.CheckPalindrome()   
 
-    l=len(s)
+    length = len(s)
 
-    # push/enqueue all the characters of string s to stack
-    for i in range(l):
-        obj.pushCharacter(s[i])
-        obj.enqueueCharacter(s[i])
+    # Push/enqueue all the characters of string s to stack
+    for i in range(length):
+        obj.push_character(s[i])
+        obj.enqueue_character(s[i])
     
-    isPalindrome=True
+    is_palindrome = True
 
-    '''
+    """
     pop the top character from stack
     dequeue the first character from queue
     compare both the characters
-    ''' 
-    for i in range(l // 2):
-        if obj.popCharacter()!=obj.dequeueCharacter():
-            isPalindrome=False
+    """
+    for i in range(length // 2):
+        if obj.pop_character() != obj.deque_character():
+            is_palindrome = False
             break
     
-    #finally print whether string s is palindrome or not.
-    if isPalindrome:
+    # Finally print whether string s is palindrome or not.
+    if is_palindrome:
         print("The word, "+s+", is a palindrome.")
     else:
         print("The word, "+s+", is not a palindrome.")  
+    return
+
 
 if __name__ == "__main__":
     sys.exit(main())
