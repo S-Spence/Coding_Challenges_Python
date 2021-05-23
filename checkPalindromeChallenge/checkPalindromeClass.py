@@ -1,4 +1,3 @@
-#!/usr/bin/python
 #-----------------------------------------------------------------------------------------------------------------------------------------
 # Author: Sarah Spence
 # Date: 2021-02-05
@@ -8,27 +7,27 @@
 #----------------------------------------------------------------------------------------------------------------------------------------
 from collections import deque
 
-class checkPalindrome:
+class CheckPalindrome:
  
     # Class constructor, empty stack and queue
-    def __init__(self):
+    def __init__(self) -> None:
         self.queue = deque()
         self.stack = []
 
     # Push character to stack
-    def pushCharacter(self, char):
+    def push_character(self, char) -> str:
         self.stack.append(char)
     
     # Enqueue character in queue
-    def enqueueCharacter(self, char):
+    def enqueue_character(self, char) -> str:
         self.queue.append(char)
     
     # Pop character from top of stack
-    def popCharacter(self):
+    def pop_character(self) -> str:
         char = self.stack.pop()
         return char
     
     # Return first character in queue
-    def dequeueCharacter(self):
+    def deque_character(self) -> str:
         char = self.queue.popleft()
         return char

@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/env python
 #-----------------------------------------------------------------------------------------------------------------------------------------
 # Author: Sarah Spence & Copyright: HackerRank
 # Date: 2021-02-01
@@ -14,8 +14,11 @@
 #---------------------------------------------------------------------------------------------------------------------------------------
 import sys
 
+
 # Function to find princess peach in the fewest steps
-def displayPathtoPrincess(m,grid):
+def display_path_to_princess(m: int, grid: list) -> None:
+    """A function to diplay the faster pass to the princess in a game grid"""
+    
     # Calculate number of steps
     steps = int((m-1)/2)
     
@@ -36,14 +39,22 @@ def displayPathtoPrincess(m,grid):
         for i in range(steps):
             print("DOWN")
             print("RIGHT")
+    
+    return
 
-def main(): 
+
+def main() -> None: 
+    """Main function"""
     # Hacker Rank's code below      
     m = int(input())
     grid = [] 
     for i in range(0, m): 
         grid.append(input().strip())
 
-    displayPathtoPrincess(m,grid)
+    display_path_to_princess(m,grid)
+
+    return
+
+
 if __name__ == "__main__":
     sys.exit(main())

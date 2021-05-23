@@ -1,4 +1,4 @@
-#!/bin/python3
+#!/usr/bin/env python
 #-----------------------------------------------------------------------------------------------------------------------------------------
 # Author: Sarah Spence
 # Date: 2021-01-20
@@ -11,15 +11,16 @@ import sys
 
 # Take T strings and print the odd and even indexed integers on the same line, 
 # separate by a space to split the evens and odds. 
-def split_strings(str_list):
+def split_strings(str_list: list) -> None:
+    """A function to split strings by odd and even indexes."""
     
     # Loop through words in list
     for word in str_list:
-        even_str = "" # Even indices 
-        odd_str = ""  # Odd indices
-        i = 0         # Store index value
+        even_str = ""
+        odd_str = ""
+    
         # Loop through letters in word
-        while i < len(word):
+        for i in range(len(word)):
             
             # split letters by even and odd indices
             if i % 2 == 0:
@@ -31,8 +32,10 @@ def split_strings(str_list):
         print(f"{even_str} {odd_str}")
     return
 
-def main():
-    str_list = [] # Define list of strings
+
+def main() -> None:
+    """Main function"""
+    str_list = []
     
     # Take input for number of strings
     T = int(input())
@@ -42,6 +45,8 @@ def main():
         str_list.append(input().replace(" ", ""))
     
     split_strings(str_list)
+
+    return
 
 if __name__ == '__main__':
     sys.exit(main())
