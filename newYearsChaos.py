@@ -1,4 +1,7 @@
 #!/usr/bin/env python
+"""Given a queue of people with numbers 1 to n, each person may bribe up to two people directly infront of them in line.
+   Determine the number of swaps that took place to get the queue in its given order. If any person made more than two swaps,
+   print too chaotic."""
 import random
 
 # Complete the minimumBribes function below.
