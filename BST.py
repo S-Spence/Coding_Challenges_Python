@@ -6,12 +6,12 @@ class BST:
         self.left = None
         self.right = None
         self.data = val
-        self.size = 0
+        self.count = 0
 
     def insert(self, val):
-        # If the tree is empty, set the current node as the root node
+        
         if val == self.data:
-            return
+            self.count += 1
 
         if val < self.data:
             if self.left:
