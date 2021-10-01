@@ -5,27 +5,37 @@ having to take every section opposite to it in a pie chart. """
 
 def maxProfit(arr, k):
 
+    # Cannot make a pie chart with uneven numbers or an empty list
+    if len(arr) %2 != 0 and len(arr) != 0:
+        return 
+
     split = len(arr)//2
-    max_profit = -100000
-    for i in range(0, split):
-        
-        sum = 0
-        sub_arr = arr[i:i+k]
-        print(sub_arr)
-      
-        """for j in range(0, k):
-            sum += arr[j] + arr[j+split]
-        if sum > max_profit:
-            max_profit = sum"""
-
-
+    max_profit = float("-inf") 
     
+    
+    for i in range(split-k+1):
+        
+        sub_arr = arr[i:i+k]
+        opposites = arr[i+split:i+k+split]
+        profit = sum(sub_arr + opposites)
+
+        if max_profit and profit > max_profit:
+            max_profit = profit
+
     return max_profit
 
 
-for __name__ in "__main__":
+    
+    
+
+
+if __name__ in "__main__":
 
     test_one = [1, 5, 1, 3, 7, -3] 
+    test_two = []
+    test_three = [0, 0, 0]
+    test_four = [-10, -10, -10, -10]
     k = 2
 
     print(maxProfit(test_one, k))
+    print(maxProfit(test_four, 4))
