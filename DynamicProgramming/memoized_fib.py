@@ -16,6 +16,10 @@ def fibonacci(n):
 print(fibonacci(7))
 print(memo)
 
+# this gets to linear time. The best algotim uses log(n) for computing fib
+# My book does not even cover this. MIT 603 does he says in the lecture
+
+
 
 
 
