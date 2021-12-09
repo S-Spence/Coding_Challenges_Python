@@ -60,7 +60,6 @@ class LRUCache:
             self.curr_size += 1
             
         
-    
     def delete(self, node: Node) -> None:
         """Delete a node from the linked list"""
         next_node = node.next

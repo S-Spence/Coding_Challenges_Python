@@ -19,7 +19,7 @@ class Solution:
                     self.search(grid, r, c)
             
             
-    def numIslands(self, grid: List[List[str]]) -> int:
+    def numIslands(self, grid) -> int:
         """Count the number of islands represented by 1s surrounded on adjacent sides by 0"""
         islands = 0 # count islands
         

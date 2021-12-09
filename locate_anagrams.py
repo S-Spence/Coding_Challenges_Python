@@ -6,10 +6,7 @@ def swap(list, i, j):
     return list
 
 
-
-
-
-def find_anagrams(s):
+def find_anagrams(s: str):
     letters = {}
     # fill dictionary with letters and their index values
     for index, val in enumerate(s):
@@ -18,6 +15,7 @@ def find_anagrams(s):
             letters[val] = [index]
         else:
             letters[val].append(index)
+            
     # Check if swapping all letters is possible
     half = len(s)/s
 
