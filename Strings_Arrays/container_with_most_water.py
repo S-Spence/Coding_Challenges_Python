@@ -8,7 +8,10 @@ Step 1: Ask questions
     Does the thickness of the line matter? -> No
     Do the left and right sides of the graph count as walls? -> No, the sides cannot be used to form a container.
     Is it safe to assume no negative values in input? -> Yes
-Step 2: Strategy, work from both ends of the list to find the greatest area. 
+Step 2: Strategy, work from both ends of the list to find the greatest area. Two pointer approach. Move the pointer to the smaller
+       value at each iteration.
+Step 3: Code
+Step 4: Test -> inline manual test on brute force solution for interview prep. 
 
 """
 def largest_container(heights: "list[int]") -> int:

@@ -29,7 +29,6 @@ class Solution:
                 quotient = num//i
                 
                 if quotient != 0:
-                    print(quotient)
                     for j in range(quotient):
                         roman += translation[i]
             num = num % i
