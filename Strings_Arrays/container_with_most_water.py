@@ -34,7 +34,7 @@ def largest_container(heights: "list[int]") -> int:
     return max_area
     """
 
-    """Optimizing the brute force solution using two pointers. O(n) runtime."""
+    """Optimizing the brute force solution using two pointers. O(n) time complexity, O(1) space complexity."""
     max_area = 0
     
     # No area with under two elements
@@ -89,6 +89,3 @@ class TestMethods(unittest.TestCase):
 # Run tests
 if __name__ == "__main__":
     unittest.main(argv=[''], exit=False)
-
-
-
