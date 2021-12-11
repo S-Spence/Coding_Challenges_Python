@@ -63,6 +63,8 @@ def trapping_water(heights: "list[int]") -> int:
         some reason to move one pointer over another.
         How to decide which pointer to move? The smaller of the two walls should move because it is the only one that impacts the amount
         of water. The lesser wall will always be on the side of the pointer that is moving. 
+
+        Time complexity: O(n) (only looks at each element once) with two pointer approch. Space Complexity: O(1)
     """
     total_rainwater = 0
     # Return zero if no container can be formed

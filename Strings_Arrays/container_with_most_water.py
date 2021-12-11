@@ -34,7 +34,7 @@ def largest_container(heights: "list[int]") -> int:
     return max_area
     """
 
-    """Optimizing the brute force solution using two pointers"""
+    """Optimizing the brute force solution using two pointers. O(n) runtime."""
     max_area = 0
     
     # No area with under two elements
@@ -43,7 +43,7 @@ def largest_container(heights: "list[int]") -> int:
     # Initialize pointers O(1) space
     p1 = 0
     p2 = len(heights) - 1
-    # Loop until the pointers meet. Worst case O(n) time? 
+    # Loop until the pointers meet. Worst case O(n) time. 
     while(p1 < p2):
         height = min(heights[p1], heights[p2])
         width = p2 - p1
