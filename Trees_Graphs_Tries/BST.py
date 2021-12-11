@@ -67,7 +67,7 @@ class BST:
         elements.append(self.data)
         
         return elements
-
+    """TODO: FIX function
     def breadth_first_search(self, root):
      
         # Create an empty queue
@@ -94,7 +94,7 @@ class BST:
             if node.right is not None:
                 queue.append(node.right)
         return output
-
+    """
     def get_height(self, node):
         """Print the height of the BST"""
         if node is None:
@@ -120,7 +120,4 @@ if __name__ == "__main__":
     print(f"In Order: {tree.in_order_traversal()}")
     print(f"Pre Order: {tree.pre_order_traversal()}")
     print(f"Post Order: {tree.post_order_traversal()}")
-    print(tree.breadth_first_search(tree))
-    print(tree.get_height(tree))
-    
-    #print(tree.get_height(numbers_2[0]))
+ 
