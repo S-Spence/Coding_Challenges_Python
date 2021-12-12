@@ -118,6 +118,7 @@ class TestMethods(unittest.TestCase):
             "ab##",
             "a#c###"
         ]
+        
         self.t = [
             "az#z",
             "acc#c",
