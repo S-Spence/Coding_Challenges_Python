@@ -1,8 +1,12 @@
-"""This script was used for a discussion in multivariable calculus. The discussion prompt asked us to consider why a sphere's volume 
+""" This script was used for a discussion in multivariable calculus. The discussion prompt asked us to consider why a sphere's volume 
 decreases beyond 5-dimensions in multi-dimensional space. We were also asked to calculate the surface area of the sphere in n-dimensions.
-I used python to automate these calculations with two recurisive algorithms."""
-
+I used python to automate these calculations with two recursive algorithms. """
 import math
+import pandas as pd
+from tabulate import tabulate
+import matplotlib as mpl
+import matplotlib.pyplot as plt
+
 
 def n_sphere_vol(n: int, r: int)-> int:
     """Recursive algorithm to calculate the volume of an n-dimensional sphere"""
@@ -33,7 +37,23 @@ def n_sphere_surface_area(n: int, r: int)-> int:
     else:
         return (2 * math.pi)/(n-2) * n_sphere_surface_area(n-2, 1)
 
-for n in range(1, 11):
-    print(f"{n}-Dimensional Sphere:")
-    print(f"    Volume: {n_sphere_vol(n, 1)} | Surface Area: {n_sphere_surface_area(n, 1)}")
+data = []
+for n in range(1, 31):
+    data.append([n, n_sphere_vol(n, 1), n_sphere_surface_area(n, 1)])
 
+
+col_headers = ["Dimensions", "Volume", "Surface Area"]
+df = pd.DataFrame(data, columns = col_headers)
+print(tabulate(df, headers = col_headers, showindex=False))
+
+plt.plot(df["Dimensions"], df["Volume"], label="Volume")
+plt.title("N-Sphere Volume")
+plt.xlabel("Dimensions")
+plt.ylabel("Volume")
+plt.show()
+
+plt.plot(df["Dimensions"], df["Surface Area"], label = "Surface Area")
+plt.title("N-Sphere Surface")
+plt.xlabel("Dimensions")
+plt.ylabel("Surface Area")
+plt.show()
