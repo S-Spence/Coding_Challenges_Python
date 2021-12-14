@@ -1,9 +1,13 @@
 
 # Definition for singly-linked list.
 class ListNode:
-    def __init__(self, val=0, next=None):
+    def __init__(self, val=None):
          self.val = val
-         self.next = next
+         self.next = None
+
+class LinkedList:
+    def __init__(self):
+        self.head = None
 
 def addTwoNumbers(l1: ListNode, l2: ListNode) -> ListNode:
     """
