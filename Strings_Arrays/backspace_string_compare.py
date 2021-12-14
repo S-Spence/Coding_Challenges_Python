@@ -18,15 +18,18 @@ Step 2: Test Cases
 Step 3: Solutions: 
         -> One way to do this would be to modify the strings, however, strings are immutable so this would make a copy of the strings.
         -> Another way would be to loop backwards and skip the next value if there is a # infront of it. Return false
-        at any time if the letters dont match and there is no hash. Additonaly space = O(nk) where k is elements in t and n is elements
-         in s. 
+        at any time if the letters dont match and there is no hash. 
 
-         Brute force solution was : O(a + b) space, O(a + b) time. This is a pretty good solution. You may be able to optimize space.
+        Brute force solution was : O(a + b) space, O(a + b) time. This is a pretty good solution. You may be able to optimize space.
 
-         Hint: utilize the original strings instead of creating new arrays
-               Try use two pointer technique
+        Hint: utilize the original strings instead of creating new arrays
+              Try two pointer technique
+        Optimized solution: Time: O(a + b) space: O(1)
+
 
 """
+"""
+Brute force
 
 def modify_string(s: str) -> "list[str]":
     # Create a helper function to modify the string and return an array according to the # rule
@@ -39,7 +42,7 @@ def modify_string(s: str) -> "list[str]":
             new_array.pop()
     return new_array
 
-"""
+
 def matching_strings(s: str, t: str) -> bool:
     # Call the helper function to modify the strings and compare output.
     new_s = modify_string(s)  # O(a) time
@@ -63,39 +66,49 @@ def matching_strings(s: str, t: str) -> bool:
 
 """Final Time Complexity brute force -> O(2a + 2) or O(a + 2b). Either way, drop the constant and it is O(a + b)"""
 
-
-# This code does not work. Out of range error. Fails some test cases when working around it.
+"""Optimized -> time complexity: O(a + b), space complexity: O(1) """
 
 def backspace(s: str, index: int) -> int:
+    """Helper function to shift pointers in the event of a #"""
+    # test s: #ab## t: a#b#
+    # s[3] -> t[3]
     if s[index] == '#':
-        backcount = 2
-        while backcount > 0 and index > 1:
-            index -= 1 # 2, 1, 0, -1
-            backcount -= 1 # 1, 0, 1, 0
+        backcount = 2 # s: 2, t: 2
+
+        while backcount > 0:
+            index -= 1 # s: 2 -> 1 -> 0 -> -1 -> -2 -> -3, t: 2 -> 1 -> 0 -> -1
+            backcount -= 1 # s: 1 -> 2 -> 1 -> 2 -> 1 -> 0, t: 1 -> 0 -> 1 -> 0
+            # Prevent out of range error
             if index >= 0:
                 if s[index] == '#':
-                    backcount += 2
+                    backcount += 2 # s: 3 -> 3, t: 2
+    # returned p1 = -3, p2 = -1
     return index
 
 def matching_strings(s: str, t: str) -> bool:
     #Optimized solution uses two pointers and shifts the pointers according to # symbols
     # Test s: "ab##" t: "a#b#"
-    p1 = len(s)-1  # 3 ->
-    p2 = len(t)-1  # 3 ->
+    p1 = len(s)-1  # 3 
+    p2 = len(t)-1  # 3
 
     while p1 >= 0 and p2 >= 0:
-
-        
         # Move pointers if one of the values is a hash
-        if s[p1] == "#" or t[p2] == "#":  #, # ->
+        if s[p1] == "#" or t[p2] == "#":  #, # -> 
             # This won't shift anything if there is no #
-            p1 = backspace(s, p1) # -1
+            p1 = backspace(s, p1) # -3
             p2 = backspace(t, p2) # -1
-        
-        # Else, decrement each pointer by one
-        else:
-            p1 -= 1
-            p2 -= 1
+        # Test case walk through takes this branch and returns true because both strings are empty
+        if p1 < 0 and p2 < 0:
+            return True
+        # If only one string is empty, we cant index into them, but it is false
+        elif p1 < 0 or p2 < 0:
+            return False
+        # Else, if the strings are not even, return false
+        if s[p1] != t[p2]:
+            return False
+        # Else decrement pointers
+        p1 -= 1
+        p2 -= 1
     return True
 
 

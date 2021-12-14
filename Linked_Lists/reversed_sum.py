@@ -43,8 +43,6 @@ def addTwoNumbers(l1: ListNode, l2: ListNode) -> ListNode:
     
     return result.next
  
-
-
 l1 = ListNode(2)
 l1.next = ListNode(4)
 l1.next.next = ListNode(3)

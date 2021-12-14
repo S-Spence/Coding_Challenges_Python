@@ -9,7 +9,7 @@ Step 2: Tests
         2) 1->2->3->4->5, m= 1, n = 5 return 5->4->3->2->1
         3) 5->None, m = 1, n = 1 return 5
         4) None, m=0, n=0 return None
-Step 3: Solution
+Step 3: Solution -> use the same technique as reversed linked list, but 
 """
 # Definition for singly-linked list.
 class ListNode:
@@ -56,36 +56,46 @@ class LinkedList:
             print_val = print_val.next
         print("Null\n")
 
-    def reverse(self):
-        """Defined outside to head node as list input for leetcode tests"""
+    # TODO: handle the case of the whole list reversing
+    def reverse_m_to_n(self, m, n):
+        """
+        Reverse the vallues in a linked list from position n to position m.
+        Space complexity: O(1), time complexity O(n).
+        """
+        # If the list is empty, return None
+        if self.head == None:
+            return None
         "Test: 1->2->3->4->5 return 5->4->3->2->1"
-        prev = None 
         current = self.head # 1
+        position = 1
+        start = self.head # 1
+        # 1 -> 2 
+        while position < m: 
+            start = current # 1
+            current = current.next # 2
+            position += 1 # 2
 
-        while(current != None): # 1 -> 2 -> 3 -> 4 -> 5
-            next = current.next # 2 -> 3 -> 4 -> 5 -> None
-            # The reversal is happening here. At each value of prev (set to current), current.next shows the reversed list
-            current.next = prev # None -> 1 -> 2 -> 3 -> 4
-            prev = current # 1 -> 2 -> 3 -> 4 -> 5
-            # This updates the loop variable
-            current = next # 2 -> 3 -> 4 -> 5 -> None
-        self.head = prev
- 
-
-def reverse(head):
-    """Defined again outside of class to take head node as list input for leetcode tests. This only returns new head node."""
-    prev = None
-    current = head
-
-    while current != None:
-        next = current.next
-        current.next = prev
-        prev = current
-        current = next
-    return prev
-        
-
-# Test 1: 1->2->3->4->5
+        new_list = None
+        tail = current # 2
+        # 2 -> 3 -> 4 -> 5
+        while position >= m and position <= n: 
+            next = current.next  # 3 -> 4 -> 5
+            # Reverse the elements between m and n
+            current.next = new_list # None -> 2 -> 3
+            new_list = current # 2 -> 3 -> 4
+            # Update the current value and loop variable
+            current = next # 3 -> 4 -> 5
+            position += 1 # 3 -> 4 -> 5
+        # Reconnect the linked list
+        start.next = new_list # start = 1, so 1 connects to 4
+        tail.next = current # 5 tail equals 2, so 2 connects to 5
+        # If m is less than one, then return the new list, else return the head of the list
+        if m > 1:
+            return self.head
+        else:
+            return new_list.val
+    
+# Test 1: 1->2->3->4->5 return 1->4->3->2->5
 test1 = LinkedList()
 
 for i in range(5):
@@ -94,9 +104,18 @@ for i in range(5):
 print("Original Linked List")
 print("--------------------")
 test1.print_list()
-print("Reversed Linked List")
+m = 2
+n = 4
+print(f"Reversed Linked List {m}-{n}")
 print("--------------------")
-test1.reverse()
+test1.reverse_m_to_n(m, n)
+test1.print_list()
+
+m = 1
+n = 5
+print(f"Reversed Linked List {m}-{n}")
+print("--------------------")
+test1.reverse_m_to_n(m, n)
 test1.print_list()
 
 # Test 2: 3->Null
@@ -105,9 +124,11 @@ test2.insert_front(3)
 print("Original Linked List")
 print("--------------------")
 test2.print_list()
-print("Reversed Linked List")
+m = 1
+n = 1
+print(f"Reversed Linked List {m}-{n}")
 print("--------------------")
-test2.reverse()
+test2.reverse_m_to_n(m, n)
 test2.print_list()
 
 # Test 3 null
@@ -115,7 +136,9 @@ test3 = LinkedList()
 print("Original Linked List")
 print("--------------------")
 test3.print_list()
-print("Reversed Linked List")
+m = 0
+n = 0
+print(f"Reversed Linked List {m}-{n}")
 print("--------------------")
-test3.reverse()
+test3.reverse_m_to_n(m, n)
 test3.print_list()
