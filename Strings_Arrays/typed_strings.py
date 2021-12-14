@@ -39,7 +39,7 @@ def modify_string(s: str) -> "list[str]":
             new_array.pop()
     return new_array
 
-
+"""
 def matching_strings(s: str, t: str) -> bool:
     # Call the helper function to modify the strings and compare output.
     new_s = modify_string(s)  # O(a) time
@@ -59,16 +59,17 @@ def matching_strings(s: str, t: str) -> bool:
         matching = True
 
     return matching
-
+"""
 
 """Final Time Complexity brute force -> O(2a + 2) or O(a + 2b). Either way, drop the constant and it is O(a + b)"""
 
-"""
-# This code does not work. Out of range error for correct solution. Fails some test cases when working around.
+
+# This code does not work. Out of range error. Fails some test cases when working around it.
+
 def backspace(s: str, index: int) -> int:
     if s[index] == '#':
         backcount = 2
-        while backcount > 0:
+        while backcount > 0 and index > 1:
             index -= 1 # 2, 1, 0, -1
             backcount -= 1 # 1, 0, 1, 0
             if index >= 0:
@@ -84,28 +85,19 @@ def matching_strings(s: str, t: str) -> bool:
 
     while p1 >= 0 and p2 >= 0:
 
-        # Return false if only one index is below zero
-       # if p1 < 0 or p2 < 0:
-        #    return False
-        # Else, both indexes are above zero and no range error. Return false if values don't match
-        if s[p1] != s[p2]:
-            return False
-        # Move pointers if one of the values if a hash
-        if s[p1] == "#" or t[p2] == "#":  # , # ->
+        
+        # Move pointers if one of the values is a hash
+        if s[p1] == "#" or t[p2] == "#":  #, # ->
             # This won't shift anything if there is no #
             p1 = backspace(s, p1) # -1
             p2 = backspace(t, p2) # -1
-
-            if p1 < 0 and p2 < 0:
-                return True
-            if p1 < 0 or p2 < 0:
-                return False
+        
         # Else, decrement each pointer by one
         else:
             p1 -= 1
             p2 -= 1
     return True
-"""
+
 
 class TestMethods(unittest.TestCase):
     def setUp(self):
@@ -117,8 +109,7 @@ class TestMethods(unittest.TestCase):
             "Ab#c",
             "ab##",
             "a#c###"
-        ]
-        
+        ]      
         self.t = [
             "az#z",
             "acc#c",

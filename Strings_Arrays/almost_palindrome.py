@@ -72,7 +72,7 @@ def almost_palindrome(s: str) -> bool:
         if s[p1] != s[p2]:
             test_1 = s[p1+1:p2+1]
             test_2 = s[p1:p2]
-            # This will add O(k) one time because of returns. So, O(n + k) -> O(n)
+            # This will add at worst O(2n) one time because of returns. So, O(3n) -> O(n)
             if is_palindrome(test_1) or is_palindrome(test_2):
                 return True
             else:
@@ -125,6 +125,3 @@ class TestMethods(unittest.TestCase):
 # Run tests
 if __name__ == "__main__":
     unittest.main(argv=[''], exit=False)
-
-
-
