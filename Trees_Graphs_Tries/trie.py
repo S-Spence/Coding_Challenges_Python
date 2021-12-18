@@ -2,9 +2,7 @@ from typing import Tuple
 
 
 class TrieNode(object):
-    """
-    Our trie node implementation. Very basic. but does the job
-    """
+    """Our trie node implementation. Very basic. but does the job"""
     
     def __init__(self, char: str):
         self.char = char
@@ -16,9 +14,7 @@ class TrieNode(object):
     
 
 def add(root, word: str):
-    """
-    Adding a word in the trie structure
-    """
+    """Adding a word in the trie structure"""
     node = root
     for char in word:
         found_in_child = False

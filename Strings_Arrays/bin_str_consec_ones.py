@@ -1,19 +1,15 @@
-#!/usr/bin/env python
-#-----------------------------------------------------------------------------------------------------------------------------------------
-# Author: Sarah Spence
-# Date: 2021-01-25
-# Title: Count Consecutive Ones in a Binary String Challenge
-# Description: Take an integer n and convert it to a binary string. Then, count the max occurences of consecutive ones in the 
-#              binary string.
-#---------------------------------------------------------------------------------------------------------------------------------------
-import sys
+import unittest
+"""
+Title: Count Consecutive Ones in a Binary String Challenge
+Description: Take an integer n and convert it to a binary string. Then, count the max occurences of consecutive ones in the
+              binary string.
+"""
 
 
-# Find max consecutive ones in a binary string
 def count_consec_ones(binary_str: str) -> int:
     """This function counts the consecutive ones in a binary string"""
     # Value to count ones
-    max_ones = 0   
+    max_ones = 0
     # Strip leading and trailing zeros and split at zeros
     binary_str = binary_str.strip("0").split("0")
     # Count consecutive ones
@@ -23,18 +19,44 @@ def count_consec_ones(binary_str: str) -> int:
     return max_ones
 
 
-# Main function   
-def main() -> None:
-    """Main function for quick testing"""
-      # Take integer input
-    num = int(input())
-    # Return the binary representation of the integer n
-    binary_rep = "{0:b}".format(num)
-    # Print highest occurence of consecutive ones
-    max_consec = count_consec_ones(binary_rep)
-    print(max_consec)
-    return
+class TestMethods(unittest.TestCase):
+    def setUp(self):
+        self.s = [
+            "11100011",
+            "0101010111",
+            "11010101",
+            "",
+            "00000",
+            "111111"
+        ]
+
+        self.answers = [3, 3, 2, 0, 0, 6]
+
+    def test_1(self):
+        self.assertTrue(count_consec_ones(
+            self.s[0]) == self.answers[0])
+
+    def test_2(self):
+        self.assertTrue(count_consec_ones(
+            self.s[1]) == self.answers[1])
+
+    def test_3(self):
+        self.assertTrue(count_consec_ones(
+            self.s[2]) == self.answers[2])
+
+    def test_4(self):
+        self.assertTrue(count_consec_ones(
+            self.s[3]) == self.answers[3])
+
+    def test_5(self):
+        self.assertTrue(count_consec_ones(
+            self.s[4]) == self.answers[4])
+    
+    def test_6(self):
+        self.assertTrue(count_consec_ones(
+            self.s[5]) == self.answers[5])
 
 
-if __name__ == '__main__':
-    sys.exit(main())   
+# Run tests
+if __name__ == "__main__":
+    unittest.main(argv=[''], exit=False)

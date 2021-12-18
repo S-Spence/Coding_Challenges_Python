@@ -1,16 +1,17 @@
-"""Given an array of integers, return the indices of the two numbers that add up to a given target. 
+import unittest
+"""
+Problem:
+Given an array of integers, return the indices of the two numbers that add up to a given target. 
 Input: a: an array of integers, n: int (target value).
-Return: the indices of the two values."""
+Return: the indices of the two values.
 
-def two_sum(nums: "list[int]",target: int ) -> int:
-    """
-       Step 1: Ask questions: 
+Step 1: Ask questions: 
                 Are all of the integers positive? -> No
                 Are there duplicate numbers in the array? -> Yes
                 Will there always be a solution available? What to return if no solution? -> No, return none
                 Can there be multiple pairs that add to target value? -> No, one solution.
                 
-        Step 2: Write out test cases
+Step 2: Write out test cases
             Example 1:  input -> [1, 3, 7, 9 2], 11
                         output -> [3, 4]
             Example 2:  input -> [1, 3, 7, 9, 2], 25
@@ -21,11 +22,16 @@ def two_sum(nums: "list[int]",target: int ) -> int:
                         output -> null (because you need two numbers that will give that target. This one is important and easy to miss!)
             Example 5:  input -> [1, 6], 7
                         output -> [0, 1]
-        Step 3: Figure out a solution without code.
+Step 3: Figure out a solution without code.
                 Use a hash table to store a mapping of value-indexes. Search for two values that sum to the number by 
                 checking if val-curr is in the dictionary. If so, return the pair, if not, move to the next value in the dict.
-        Step 4: Check for errors and spell-checks. This part is hard when you are not used to checking without IDE. 
-    """
+Step 4: Check for errors and spell-checks.
+
+"""
+
+def two_sum(nums: "list[int]",target: int ) -> int:
+    """Return the two indices whose values sum to the target"""
+
     # Dictionary to store indices
     index = {}
     # Cannot make a pair with less than 2 elements
@@ -46,27 +52,34 @@ def two_sum(nums: "list[int]",target: int ) -> int:
             if target-val in index.keys() and index[target-val] != index[val]:
                 return [index[val], index[target-val]]
 
-def tests():
-
-    test_one = []
-    test_two = [1, 3, 7, 9, 2] # 11 expected [3,4]
-    test_three = [1, 3, 7, 9, 2] # 25 and null
-    test_four = [5] # 5 expected null
-    test_five = [1, 6] # 7 expected [0, 1]
-    test_six = [3, 3] # target 6, expected [0, 1]
+    
+class TestMethods(unittest.TestCase):
+    def setUp(self):
+        self.tests = [
+            [], 
+            [1, 3, 7, 9, 2],
+            [1, 3, 7, 9, 2],
+            [5],
+            [1, 6],
+            [3, 3]
+            ] 
+        self.tests2 = [0, 11, 25, 5, 7, 6]
+        self.answers = [None, [3, 4], None, None, [0,1], [0, 1]]
     
 
-    assert(two_sum(test_one, 0) == None)
-    assert(two_sum(test_two, 11) == [3,4])
-    assert(two_sum(test_three, 25) == None)
-    assert(two_sum(test_four, 5) == None)
-    assert(two_sum(test_five, 7) == [0, 1])
-    assert(two_sum(test_six, 6) == [0, 1])
+    def test_1(self):
+        self.assertTrue(two_sum(self.tests[0], self.tests2[0]) == self.answers[0])
+    def test_2(self):
+        self.assertTrue(two_sum(self.tests[1], self.tests2[1]) == self.answers[1])
+    def test_3(self):
+        self.assertTrue(two_sum(self.tests[2], self.tests2[2]) == self.answers[2])
+    def test_4(self):
+        self.assertTrue(two_sum(self.tests[3], self.tests2[3]) == self.answers[3])
+    def test_5(self):
+        self.assertTrue(two_sum(self.tests[4], self.tests2[4]) == self.answers[4])
+    def test_6(self):
+        self.assertTrue(two_sum(self.tests[5], self.tests2[5]) == self.answers[5])
 
-    print("Tests passed.")
-
-    """Final solution: O(n) space and O(n) time."""
-    """The brute force solution would be O(n^2) time and O(1) space"""
-
+# Run tests
 if __name__ == "__main__":
-    tests()
+    unittest.main(argv=[''], exit=False)

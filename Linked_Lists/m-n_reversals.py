@@ -40,7 +40,7 @@ class LinkedList:
             return
         # Else find the last node
         last = self.head
-        while (last.next):
+        while last.next:
             last = last.next
  
         # Set the new node as the last node's next val
