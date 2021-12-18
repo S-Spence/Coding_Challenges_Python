@@ -163,26 +163,30 @@ def checkLinks(head, lists=None):
 The challenge function is below. Worst case runtime: O(n)
 """
 def flatten(head: Node) -> Node:
-    
+    """Flatten the multi-level linked lists"""
+    # Return head if the list is empty
     if head is None:
         return head
-
+    # Set current to head
     current = head
-
+    # While current is not the tail, determine if current has a child
     while current != None:
+        # If no child, move current, else determine the tail of the merging list
         if current.child == None:
             current = current.next
         else:
+            # Find the tail of nested list
             tail = current.child
             while tail.next != None:
                 tail = tail.next
-
+            # Link the tail to current's next value both ways
             tail.next = current.next
             if tail.next != None:
                 tail.next.prev = tail
-
+            # Link the list infront 
             current.next = current.child
             current.next.prev = current
+            # Now there is no child since the list has been merged
             current.child = None
     return head
 
