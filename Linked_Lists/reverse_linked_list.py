@@ -65,7 +65,7 @@ class LinkedList:
         prev = None 
         current = self.head # 1
 
-        while(current != None): # 1 -> 2 -> 3 -> 4 -> 5
+        while current != None: # 1 -> 2 -> 3 -> 4 -> 5
             next = current.next # 2 -> 3 -> 4 -> 5 -> None
             # The reversal is happening here. At each value of prev (set to current), current.next shows the reversed list
             current.next = prev # None -> 1 -> 2 -> 3 -> 4
