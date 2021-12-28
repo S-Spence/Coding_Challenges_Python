@@ -3,12 +3,14 @@ Binary Search Tree Two-Class Implementation W/ BFS and DFS.
 
 """
 
+
 class TreeNode:
 
     def __init__(self, value=None):
         self.value = value
         self.left = None
         self.right = None
+
 
 class BST:
 
@@ -33,7 +35,7 @@ class BST:
                 current.left = TreeNode(value)
             else:
                 self._insert(value, current.left)
-        
+
         elif value > current.value:
             if current.right == None:
                 current.right = TreeNode(value)
@@ -42,10 +44,10 @@ class BST:
         else:
             print("The value is already in the tree.")
 
-
     # --------------------------------------------------------------------
     # Breadth first search
     # --------------------------------------------------------------------
+
     def breadth_first_search(self) -> "list[int]":
         """Return a list of values using breadth first search"""
         # Create an empty queue for level order traversal
@@ -54,7 +56,7 @@ class BST:
         values = []
         # Enqueue Root
         queue.append(self.root)
-        
+
         while(len(queue) > 0):
             # Append the current value to values list and set the node the the current value
             node = queue.pop(0)
@@ -62,10 +64,10 @@ class BST:
 
             if node is None:
                 continue
-            #Enqueue left child
+            # Enqueue left child
             if node.left:
                 queue.append(node.left)
- 
+
             # Enqueue right child
             if node.right:
                 queue.append(node.right)
@@ -84,7 +86,7 @@ class BST:
         if self.root != None:
             self._in_order(values, self.root)
         return values
-        
+
     def _in_order(self, values: "list[int]", current: TreeNode):
         """Private method to fill the list of values using in-order traversal"""
         if current != None:
@@ -103,7 +105,7 @@ class BST:
         if self.root != None:
             self._pre_order(values, self.root)
         return values
-    
+
     def _pre_order(self, values: "list[int]", current: TreeNode):
         """Private method to fill the list of values using pre-order traversal"""
         if current != None:
@@ -112,7 +114,7 @@ class BST:
                 self._pre_order(values, current.left)
             if current.right:
                 self._pre_order(values, current.right)
-    
+
     # -------------------------
     # Post-Order
     # -------------------------
@@ -122,7 +124,7 @@ class BST:
         if self.root != None:
             self._post_order(values, self.root)
         return values
-    
+
     def _post_order(self, values: "list[int]", current: TreeNode):
         """Private method to fill the list of values using post-order traversal"""
         if current != None:
@@ -131,7 +133,7 @@ class BST:
             if current.right:
                 self._post_order(values, current.right)
             values.append(current.value)
-        
+
 
 if __name__ == "__main__":
     bst_1 = BST()
@@ -145,4 +147,4 @@ if __name__ == "__main__":
     print(f"In-Order Traversal: {bst_1.in_order()}")
     print(f"Pre-Order Traversal: {bst_1.pre_order()}")
     print(f"Post-Order Traversal: {bst_1.post_order()}")
-    print(f"Breadth First Search: {bst_1.breadth_first_search()}")    
+    print(f"Breadth First Search: {bst_1.breadth_first_search()}")

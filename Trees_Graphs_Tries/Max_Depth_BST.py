@@ -1,5 +1,5 @@
 import unittest
-import BST_Two_Class as BST
+import bst_two_class as BST
 """
 Problem: Find the maximum depth of a binary search tree. 
         The maximum depth is the number of nodes along the longest path from root node to leaf node.
