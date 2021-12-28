@@ -97,7 +97,7 @@ class TestMethods(unittest.TestCase):
 
     def test_3(self):
         self.assertTrue(start_end_indices(
-            self.s[2], self.val[2]) == self.answers[2] or self.answers_alt[0])
+            self.s[2], self.val[2]) == self.answers[2])
 
     def test_4(self):
         self.assertTrue(start_end_indices(
