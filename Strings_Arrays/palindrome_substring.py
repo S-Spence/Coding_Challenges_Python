@@ -149,21 +149,20 @@ def longest_pal_substr_3(s: str) -> str:
     """
     # Test "abbc"
     # Insert special char # at start, end and in between every character of s. Space/time O(n)
-    new_string = "#" + "#".join(s[i:i + 1]
-                                for i in range(0, len(s), 1)) + "#"  # "#a#b#b#c#"
+    new_string = "#" + "#".join(s[i:i + 1] for i in range(0, len(s), 1)) + "#"  # "#a#b#b#c#"
     # Create a list of zeros to track longest pal substring. Space/Time = O(2n+1) = O(n)
     lps = [0 for _ in range(len(new_string))]  # [0, 0, 0, 0, 0, 0, 0, 0]
     # Initialize center and right pointers to zero
     center = 0
-    range = 0
+    length = 0
 
     # Manual Test -> "#a#b#b#c#"
     # 0 -> 1 -> 2 -> 3 -> 4 -> 5 -> 6 -> 7 -> 8
     for i in range(len(new_string)):
         mirror = 2*center - i  # 0 -> -1 -> 0 -> -1 -> 2 -> 3 -> 2 -> 1 -> 6
 
-        if right > i:
-            lps[i] = min(right-i, lps[mirror])  # lps[5] = 1
+        if length > i:
+            lps[i] = min(length-i, lps[mirror])  # lps[5] = 1
 
         try:
             # s[1] = s[0]? no -> s[2] = s[0]? yes -> s[4] = s[-1]? pass -> s[3] = s[1]? no -> s[4] = s[2]? yes
@@ -176,14 +175,14 @@ def longest_pal_substr_3(s: str) -> str:
         except:
             pass
 
-        if i + lps[i] > range:
+        if i + lps[i] > length:
             center = i         # 1 -> 3 -> 4 -> 7
-            range = i + lps[i]  # 2 -> 4 -> 6 -> 8
+            length = i + lps[i]  # 2 -> 4 -> 6 -> 8
 
-    range = max(lps)             # 2
+    length = max(lps)             # 2
     center = lps.index(max(lps))  # 4
     # new_str = "#a#b#b#c#" -> s[2:6] = "#b#b#" -> "bb"
-    return new_string[center - range: center + range].replace("#", "")
+    return new_string[center - length: center + length].replace("#", "")
 
 
 class TestMethods(unittest.TestCase):
