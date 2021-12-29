@@ -155,7 +155,7 @@ def longest_pal_substr_3(s: str) -> str:
     lps = [0 for _ in range(len(new_string))]  # [0, 0, 0, 0, 0, 0, 0, 0]
     # Initialize center and right pointers to zero
     center = 0
-    right = 0
+    range = 0
 
     # Manual Test -> "#a#b#b#c#"
     # 0 -> 1 -> 2 -> 3 -> 4 -> 5 -> 6 -> 7 -> 8
@@ -176,14 +176,14 @@ def longest_pal_substr_3(s: str) -> str:
         except:
             pass
 
-        if i + lps[i] > right:
+        if i + lps[i] > range:
             center = i         # 1 -> 3 -> 4 -> 7
-            right = i + lps[i]  # 2 -> 4 -> 6 -> 8
+            range = i + lps[i]  # 2 -> 4 -> 6 -> 8
 
-    right = max(lps)             # 2
+    range = max(lps)             # 2
     center = lps.index(max(lps))  # 4
     # new_str = "#a#b#b#c#" -> s[2:6] = "#b#b#" -> "bb"
-    return new_string[center - right: center + right].replace("#", "")
+    return new_string[center - range: center + range].replace("#", "")
 
 
 class TestMethods(unittest.TestCase):
