@@ -149,10 +149,10 @@ def longest_pal_substr_3(s: str) -> str:
     """
     # Test "abbc"
     # Insert special char # at start, end and in between every character of s. Space/time O(n)
-    new_string = "#" + "#".join(s[i:i + 1] for i in range(0, len(s), 1)) + "#"  # "#a#b#b#c#"
+    new_string = "#" + "#".join(s[i] for i in range(0, len(s), 1)) + "#"  # "#a#b#b#c#"
     # Create a list of zeros to track longest pal substring. Space/Time = O(2n+1) = O(n)
     lps = [0 for _ in range(len(new_string))]  # [0, 0, 0, 0, 0, 0, 0, 0]
-    # Initialize center and right pointers to zero
+    # Initialize center and length to zero
     center = 0
     length = 0
 
