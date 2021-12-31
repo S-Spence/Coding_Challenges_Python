@@ -2,6 +2,11 @@
 Problem: Given a linked list, determine if it has a cycle and return the node where the cycle begins. Return null if there is no cycle.
         Leetcode (Medium): https://leetcode.com/problems/linked-list-cycle-ii/
 
+Tests: See tests on leetcode
+
+Solutions: 
+        Brute Force: Use a set to track seen nodes. A set has O(1) lookup. Runtime: O(n), Space: O(n)
+        Floyd's Tortoise and Hare: Runtime O(n), Space O(1)
 """
 
 class Node:
@@ -31,12 +36,13 @@ def find_cycle(head):
 
     return current
 
+
 """
-The optimal solution uses Floyd's Tortoise and Hare algorithm. FAANG comapnies expect you to know this.
+Note: the optimal solution uses Floyd's Tortoise and Hare algorithm. FAANG comapanies expect you to know this.
 """
 def optimized_find_cycle(head):
     """
-    Use Floyd's Tortoise and Hare algorithm
+    Use Floyd's Tortoise and Hare algorithm. Runtime O(n), Space O(1)
     
     """
     # Return None if the list is empty
