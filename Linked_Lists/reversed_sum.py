@@ -1,4 +1,3 @@
-import unittest
 """
 Problem: Given two linked lists storing digits in reverser oder, retrun the sum of the linked lists also in reverse order. 
 
@@ -12,11 +11,11 @@ Constraints:
 
 Tests: 
     l1 = 2->4->3, l2 = 5->6->4 ->  342 + 465 = 807 = result = 7->0->8
-    l1 = 3->0->9, l2 = 0 -> 0-> 2 -> = 1103 + result = 3->0->1->1
+    l1 = 3->0->9, l2 = 0 -> 0-> 2 -> = 903 + 200 = 1103 + result = 3->0->1->1
     l1 = 0, l2 = 0 -> reult = 0
 
 Solution: Keep track of the variable to carry on every iteration. Leave the head element as None since the output is in reverse order
-          Return result.next.
+          Return result.next to skip none
           Runtime O(max(m,n)) Space: O(max(m,n))
 """
 
