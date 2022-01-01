@@ -7,7 +7,8 @@ Constraints:
             What to return if list is empty? -> The list will not be empty
             Case sensitive? -> Assume all letterd are lower
 Tests: 
-    ["cab","tin","pew","duh","may","ill","buy","bar","max","doc"] -> ["cab","tin","pew","duh","may","ill","buy","bar","max","doc"]
+    ["cab","tin","pew","duh","may","ill","buy","bar","max","doc"] -> [["cab"],["tin"],["pew"],["duh"],["may"]
+                                                                        ,["ill"],["buy"],["bar"],["max"],["doc"]]
     ["eat","tea","tan","ate","nat","bat"] -> [["eat", "tea", "ate], ["tan", "nat"], ["bat"]]
     ["ac", "c"] -> [["ac"], ["c"]]
     
@@ -75,8 +76,7 @@ class TestMethods(unittest.TestCase):
         ]
 
         self.answers = [
-            [["cab"], ["tin"], ["pew"], ["duh"], ["may"], [
-                "ill"], ["buy"], ["bar"], ["max"], ["doc"]],
+            [["cab"], ["tin"], ["pew"], ["duh"], ["may"], ["ill"], ["buy"], ["bar"], ["max"], ["doc"]],
             [["eat", "tea", "ate"], ["tan", "nat"], ["bat"]],
             [["ac"], ["c"]]
         ]
