@@ -25,6 +25,7 @@ def set_zeros(matrix: "list[list[int]]") -> None:
     # stores the rows and cols that contain zeros
     rows = []
     cols = []
+    
     # find all zeros rows and cols
     for row in range(len(matrix)):
         for col in range(len(matrix[0])):
