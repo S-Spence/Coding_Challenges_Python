@@ -45,7 +45,8 @@ def set_distances(matrix: "list[int[int]]", row: int, col: int, moves: int):
     
 def nearest_gate_dfs(matrix: "list[int[int]]")-> "list[int[int]]":
     """
-    Dfs solution to find the set each cell to its distance from the nearest gate
+    Dfs solution to set each cell to its distance from the nearest gate
+    Time: , Space: O(mn)
     """
     # return the matrix if it is empty
     if len(matrix) == 0:
@@ -65,6 +66,7 @@ Solution 2: bfs
 def nearest_gate_bfs(matrix: "list[int[int]]")->"list[int[int]]":
     """
     bfs solution to finding the nearest gate. This solution passes all leetcode test cases.
+    Time: O(mn), SPace: O(mn)
     """
 
     # return 0 if length of matrix is zero
@@ -83,7 +85,7 @@ def nearest_gate_bfs(matrix: "list[int[int]]")->"list[int[int]]":
         current = queue.popleft()
         row = current[0]
         col = current[1]
-
+        # Update surrounding directions with empty rooms and append to queue
         for direction in directions:
             next_row = row + direction[0]
             next_col = col + direction[1]
@@ -91,6 +93,7 @@ def nearest_gate_bfs(matrix: "list[int[int]]")->"list[int[int]]":
             # check bounds and empty cell
             if next_row < 0 or next_row >= len(matrix) or next_col < 0 or next_col >= len(matrix[0]) or matrix[next_row][next_col] != inf:
                 continue
+            
             # update matrix next value and append the next value to the queue
             matrix[next_row][next_col] = matrix[row][col] + 1
             queue.append([next_row, next_col])
