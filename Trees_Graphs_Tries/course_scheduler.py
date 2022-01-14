@@ -1,4 +1,3 @@
-
 import unittest
 from collections import deque
 """
@@ -34,7 +33,9 @@ Solution: A cycle would prevent the algorithm from being able to finish the cour
 BFS solution
 
 """
-def course_schedule(num_courses: int, pre_reqs: "list[int]")->bool:
+
+
+def course_schedule(num_courses: int, pre_reqs: "list[int]") -> bool:
     """
     Determine if it is possible to finish all courses given a list of prerequisites
     Runtime(p + n^3), Space: O(n^2)
@@ -56,8 +57,8 @@ def course_schedule(num_courses: int, pre_reqs: "list[int]")->bool:
         # Add all current class prereqs to the queue. Worst case time: O(n)
         for i in range(len(dir_graph[vertex])):
             queue.append(dir_graph[vertex][i])
-        
-        # Perform bfs Time: O(n), Space: O(n) 
+
+        # Perform bfs Time: O(n), Space: O(n)
         while len(queue) > 0:
             current = queue.popleft()
             seen[current] = True
@@ -90,9 +91,12 @@ Notes: Every verex in isolation has what is known as an Indegree factor. This on
        
 
 """
-def course_schedule_topological(num_courses: int, pre_reqs: "list[int]")->bool:
+
+
+def course_schedule_topological(num_courses: int, pre_reqs: "list[int]") -> bool:
     """
     Use topological sort to determine if it is possible to complete all courses
+    runtime: O(p + n^2), space: O(n^2) 
     """
     # Return true if there are no prereqs
     if len(pre_reqs) == 0:
@@ -106,7 +110,7 @@ def course_schedule_topological(num_courses: int, pre_reqs: "list[int]")->bool:
     for val in pre_reqs:
         dir_graph[val[1]].append(val[0])
         in_degrees[val[0]] += 1
-    # Initialize a stack to track the courses with no pre-reqs or met pre-reqs 
+    # Initialize a stack to track the courses with no pre-reqs or met pre-reqs
     stack = []
     # Add values to stack if they can be removed
     for i in range(len(in_degrees)):
@@ -120,39 +124,27 @@ def course_schedule_topological(num_courses: int, pre_reqs: "list[int]")->bool:
         count += 1
         # Get the prereqs of the current course
         adjacent = dir_graph[current]
-        # for each course
+        # Decrement the in_degree for the courses with dependencies
         for i in range(len(adjacent)):
             next = adjacent[i]
             in_degrees[next] -= 1
-
+            # If the value has no dependencies, add to stack
             if in_degrees[next] == 0:
                 stack.append(next)
 
     return count == num_courses
 
 
-   
-        
-
-    
-        
-
-
-    
-
-
-
-
 class TestMethods(unittest.TestCase):
     def setUp(self):
         self.pre_reqs = [
-            [[1,0], [2, 1], [2, 5], [0, 3], [4, 3], [3, 5], [4, 5]],
+            [[1, 0], [2, 1], [2, 5], [0, 3], [4, 3], [3, 5], [4, 5]],
             [[1, 0], [0, 1]],
             [[1, 0]]
         ]
-    
+
         self.num_courses = [6, 2, 2]
-        
+
         self.answers = [True, False, True]
 
     def test_1(self):
