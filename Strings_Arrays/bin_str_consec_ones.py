@@ -1,21 +1,30 @@
 import unittest
 """
-Title: Count Consecutive Ones in a Binary String Challenge
-Description: Take an integer n and convert it to a binary string. Then, count the max occurences of consecutive ones in the
-              binary string.
+Problem: Count Consecutive Ones in a Binary String Challenge
+         Take a binary string and count the max occurences of consecutive ones.
+Solution: Keep track of the maximum number of ones seen so far, and update this variable if the current string on ones is longer.
+          Runtime: O(n), Space: O(1)
 """
 
 
 def count_consec_ones(binary_str: str) -> int:
     """This function counts the consecutive ones in a binary string"""
-    # Value to count ones
+    # Value to max ones and current consecutive ones
     max_ones = 0
-    # Strip leading and trailing zeros and split at zeros
-    binary_str = binary_str.strip("0").split("0")
-    # Count consecutive ones
-    for str in binary_str:
-        if len(str) > max_ones:
-            max_ones = len(str)
+    current_ones = 0
+    # Count consecutive ones in a binary string
+    for val in binary_str:
+        # Reset current ones if hitting a zero
+        if val == "0":
+            current_ones = 0
+            continue
+        # Increment current ones if hitting a one
+        elif val == "1":
+            current_ones += 1
+        # Check if the current ones are greater than max ones and update
+        if current_ones > max_ones:
+            max_ones = current_ones
+        
     return max_ones
 
 

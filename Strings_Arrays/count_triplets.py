@@ -1,7 +1,19 @@
-#!/usr/bin/env python
 import random
+import unittest
+"""
+Problem: Given an array of integers and a value r, could the triplets appearing in progressing order of multiples of r. 
 
-def countTriplets(arr, r):
+Constraints:
+        What to return if the array is empty? -> 0
+Tests: 
+    # [1, 5, 5, 25, 125], r= 5 -> 4
+    # [1, 3, 9, 9, 27, 81] r=3, -> 6
+    # [], r= 1 -> 0
+
+Solution: Keep track of two dictionaries. Runtime: O(n), Space: O(n)
+"""
+
+def count_triplets(arr: "list[int]", r: int):
     """Count triplets appearing in progressing order in multiples of r"""
     count = 0
     before = dict()
@@ -34,24 +46,32 @@ def countTriplets(arr, r):
             before[val] = 1  
     
     return count
-                                                  
-if __name__ == '__main__':
 
-    # Generate some test data
-    test_1 = [1, 5, 5, 25, 125]
-    test_2 = [1, 3, 9, 9, 27, 81]
-    test_3 = [1 for i in range(100)]
-    test_4 = [random.randint(0, 10000) for i in range(1000)]
-    
 
-    # Test the above samples and add to a list to format output
-    ans1 = countTriplets(test_1, 5)
-    ans2 = countTriplets(test_2, 3)
-    ans3 = countTriplets(test_3, 1)
-    ans4 = countTriplets(test_4, 4)
-    answers = [ans1, ans2, ans3, ans4]
+class TestMethods(unittest.TestCase):
+    def setUp(self):
+        # Generate some test data
+        self.lists = [[1, 5, 5, 25, 125], [1, 3, 9, 9, 27, 81], [1 for i in range(100)], []]
+        self.r = [5, 3, 1, 1]
+        self.answers = [4, 6, 161700, 0]
 
-    # Print output
-    for val in range(len(answers)):
-        print(f"Test {val + 1}: {answers[val]} triplets")
+    def test_1(self):
+        self.assertTrue(count_triplets(
+            self.lists[0], self.r[0]) == self.answers[0])
 
+    def test_2(self):
+        self.assertTrue(count_triplets(
+            self.lists[1], self.r[1]) == self.answers[1])
+
+    def test_3(self):
+        self.assertTrue(count_triplets(
+            self.lists[2], self.r[2]) == self.answers[2])
+
+    def test_4(self):
+        self.assertTrue(count_triplets(
+            self.lists[3], self.r[3]) == self.answers[3])
+
+
+# Run tests
+if __name__ == "__main__":
+    unittest.main()                                         

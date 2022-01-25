@@ -15,11 +15,13 @@ Class Trie:
 
 
 """
+
 class TrieNode:
-    
+
     def __init__(self):
         self.children = {}
         self.end = False
+
 
 class Trie:
 
@@ -43,8 +45,7 @@ class Trie:
             # call insert by uddating current node to s[0] and slicing the string
             self.insert(s[1:], current.children[s[0]])
 
-
-    def search(self, s: str, current=None)-> bool:
+    def search(self, s: str, current=None) -> bool:
         """Search for a word in the trie. Time: O(len word), space: O(len word)"""
         # set current to the root if no node was passed in
         if current == None:
@@ -61,21 +62,20 @@ class Trie:
         else:
             return self.search(s[1:], current.children[s[0]])
 
-        
-    def starts_with(self, prefix: str, current=None)->bool:
+    def starts_with(self, prefix: str, current=None) -> bool:
         """Find a prefix in a trie"""
         # set current value to the root node if it is empty
         if current == None:
             current = self.root
-        
+
         if len(prefix) == 0:
             return True
-        
+
         elif prefix[0] not in current.children:
             return False
         else:
             return self.starts_with(prefix[1:], current.children[prefix[0]])
-        
+
 
 class TestMethods(unittest.TestCase):
     def setUp(self):
@@ -84,11 +84,11 @@ class TestMethods(unittest.TestCase):
         self.trie.insert("tree")
 
     def test_1(self):
-        
+
         self.assertTrue(self.trie.search("apple") == True)
 
     def test_2(self):
-       
+
         self.assertTrue(self.trie.starts_with("tr") == True)
 
     def test_3(self):
@@ -99,6 +99,7 @@ class TestMethods(unittest.TestCase):
 
     def test_5(self):
         self.assertTrue(self.trie.starts_with("ch") == False)
+
 
 # Run tests
 if __name__ == "__main__":
