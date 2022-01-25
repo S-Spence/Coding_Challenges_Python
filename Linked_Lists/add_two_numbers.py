@@ -1,3 +1,4 @@
+import unittest
 """
 Problem: Given two linked lists storing digits in reverser oder, retrun the sum of the linked lists also in reverse order. 
 
@@ -64,40 +65,59 @@ def add_numbers(l1: ListNode, l2: ListNode) -> ListNode:
     # print result.next because the sum is in reverse order, so the first node is None. Reverse R/S: O(max(m,n))
     return result.next
 
-# Create L1 elements
-l1_1 = ListNode(2)
-l1_1.next = ListNode(4)
-l1_1.next.next = ListNode(3)
 
-l1_2 = ListNode(3)
-l1_2.next = ListNode(0)
-l1_2.next.next = ListNode(9)
+class TestMethods(unittest.TestCase):
+    def setUp(self):
+        # Create L1 elements
+        self.l1_1 = ListNode(2)
+        self.l1_1.next = ListNode(4)
+        self.l1_1.next.next = ListNode(3)
 
-l1_3 = ListNode(0)
+        self.l1_2 = ListNode(3)
+        self.l1_2.next = ListNode(0)
+        self.l1_2.next.next = ListNode(9)
 
-# Create L2 elements
-l2_1 = ListNode(5)
-l2_1.next = ListNode(6)
-l2_1.next.next = ListNode(4)
+        self.l1_3 = ListNode(0)
 
-l2_2 = ListNode(0)
-l2_2.next = ListNode(0)
-l2_2.next.next = ListNode(2)
+        # Create L2 elements
+        self.l2_1 = ListNode(5)
+        self.l2_1.next = ListNode(6)
+        self.l2_1.next.next = ListNode(4)
 
-l2_3 = ListNode(0)
+        self.l2_2 = ListNode(0)
+        self.l2_2.next = ListNode(0)
+        self.l2_2.next.next = ListNode(2)
 
-# Get results
-l3_1 = add_numbers(l1_1, l2_1)
-l3_2 = add_numbers(l1_2, l2_2)
-l3_3 = add_numbers(l1_3, l2_3)
+        self.l2_3 = ListNode(0)
 
-results = [l3_1, l3_2, l3_3]
-expected = ["708", "3011", "0"]
+    # Tests for linked lists
+    def test_1(self):
+        result = add_numbers(self.l1_1, self.l2_1)
+        expected = "708"
+        i = 0
+        while result != None:
+            self.assertTrue((result.val) == int(expected[i]))
+            i += 1
+            result = result.next
 
-for i in range(len(results)):
-    print(f"Expected: {expected[i]}")
-    while results[i]:
-        print(results[i].val, end="")
-        results[i] = results[i].next
-    print("")
-    
+    def test_2(self):
+        result = add_numbers(self.l1_2, self.l2_2)
+        expected = "3011"
+        i = 0
+        while result != None:
+            self.assertTrue((result.val) == int(expected[i]))
+            i += 1
+            result = result.next
+
+    def test_3(self):
+        result = add_numbers(self.l1_3, self.l2_3)
+        expected = "0"
+        i = 0
+        while result != None:
+            self.assertTrue((result.val) == int(expected[i]))
+            i += 1
+            result = result.next
+
+# Run tests
+if __name__ == "__main__":
+    unittest.main()

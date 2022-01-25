@@ -1,3 +1,4 @@
+import unittest
 """
 Problem (easy): Given a linked list, return it in reverse. 
 Leetcode: https://leetcode.com/problems/reverse-linked-list
@@ -122,3 +123,32 @@ print("Reversed Linked List")
 print("--------------------")
 test3.reverse()
 test3.print_list()
+
+
+class TestMethods(unittest.TestCase):
+    def setUp(self):
+        self.test1 = LinkedList()
+
+        for i in range(5):
+            self.test1.insert_end(i+1)
+        
+        self.test2 = LinkedList()
+        self.test2.insert_front(3)
+        
+        self.test3 = LinkedList()
+
+    # Tests for linked lists
+    def test_1(self):
+        result = self.test1.reverse()
+        #result = self.test1.head
+        expected = "54321"
+        i = 0
+        while result != None:
+
+            self.assertTrue((result.val) == int(expected[i]))
+            i += 1
+            result = result.next
+
+# Run tests
+if __name__ == "__main__":
+    unittest.main()

@@ -3,7 +3,6 @@ This also runs in O(1) time with default max size of 128. You can change maxsize
  However, probably not what they want in an interview. 
 https://leetcode.com/problems/lru-cache/submissions/"""
 
-
 # Define node class
 class Node:
     
@@ -26,7 +25,8 @@ class LRUCache:
         self.tail.prev = self.head
         
     def get(self, key: int) -> int:
-        
+        """Get a value from the cache"""
+        # Return -1 if not in cache
         if key not in self.node_dict:
             return -1
         node = self.node_dict[key]
@@ -75,10 +75,3 @@ class LRUCache:
         node.prev = prev_node_tail
         node.next = self.tail
         self.tail.prev = node  
-        
-
-
-# Your LRUCache object will be instantiated and called as such:
-# obj = LRUCache(capacity)
-# param_1 = obj.get(key)
-# obj.put(key,value)
