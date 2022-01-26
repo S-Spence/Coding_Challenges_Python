@@ -1,3 +1,4 @@
+import unittest
 """
 Problem: Given a linked list, determine if it has a cycle and return the node where the cycle begins. Return null if there is no cycle.
         Leetcode (Medium): https://leetcode.com/problems/linked-list-cycle-ii/
@@ -9,7 +10,7 @@ Solutions:
         Floyd's Tortoise and Hare: Runtime O(n), Space O(1)
 """
 
-class Node:
+class ListNode:
 
     def __init__(self, val=None):
         self.val = val
@@ -72,4 +73,38 @@ def optimized_find_cycle(head):
     
     return p1
 
-"""Tests on Leetcode for these functions"""
+class TestMethods(unittest.TestCase):
+    def setUp(self):
+        # Create list with cycle
+        self.l1 = ListNode(3)
+        self.l1.next = ListNode(2)
+        self.l1.next.next = ListNode(0)
+        self.l1.next.next.next = ListNode(4)
+        # create cycle
+        self.l1.next.next.next.next = self.l1.next
+
+        # Create list without cycle
+        self.l2 = ListNode(3)
+        self.l2.next = ListNode(2)
+        self.l2.next.next = ListNode(0)
+        self.l2.next.next.next = ListNode(4)
+        
+
+    # Tests solution one
+    def test_1(self):
+        self.assertTrue(find_cycle(self.l1).val == 2)
+
+    def test_2(self):
+        self.assertTrue(find_cycle(self.l2) == None)
+
+    # Tests solution two
+    def test_3(self):
+        self.assertTrue(optimized_find_cycle(self.l1).val == 2)
+
+    def test_4(self):
+        self.assertTrue(optimized_find_cycle(self.l2) == None)
+
+
+# Run tests
+if __name__ == "__main__":
+    unittest.main()

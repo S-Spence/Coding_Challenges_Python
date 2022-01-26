@@ -89,42 +89,6 @@ def reverse(head):
     return prev
         
 
-# Test 1: 1->2->3->4->5
-test1 = LinkedList()
-
-for i in range(5):
-    test1.insert_end(i+1)
-
-print("Original Linked List")
-print("--------------------")
-test1.print_list()
-print("Reversed Linked List")
-print("--------------------")
-test1.reverse()
-test1.print_list()
-
-# Test 2: 3->Null
-test2 = LinkedList()
-test2.insert_front(3)
-print("Original Linked List")
-print("--------------------")
-test2.print_list()
-print("Reversed Linked List")
-print("--------------------")
-test2.reverse()
-test2.print_list()
-
-# Test 3 null
-test3 = LinkedList()
-print("Original Linked List")
-print("--------------------")
-test3.print_list()
-print("Reversed Linked List")
-print("--------------------")
-test3.reverse()
-test3.print_list()
-
-
 class TestMethods(unittest.TestCase):
     def setUp(self):
         self.test1 = LinkedList()
@@ -148,6 +112,14 @@ class TestMethods(unittest.TestCase):
             self.assertTrue((result.val) == int(expected[i]))
             i += 1
             result = result.next
+
+    def test_2(self):
+        self.test2.reverse()
+        self.assertTrue(self.test2.head.val == 3)
+
+    def test_3(self):
+        self.test3.reverse()
+        self.assertTrue(self.test3.head == None)
 
 # Run tests
 if __name__ == "__main__":
