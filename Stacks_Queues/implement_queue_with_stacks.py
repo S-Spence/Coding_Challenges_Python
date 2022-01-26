@@ -1,3 +1,4 @@
+import unittest
 """
 Problem: Implement the class queue using stacks. The queue methods you need to implement are enqueue, dequeue, peek, and empty.
         - Enqueue adds to end
@@ -76,16 +77,39 @@ class Queue:
             return False
 
 
-if __name__ == "__main__":
-    queue = Queue()
-    
-    for i in range(5):
-        queue.enqueue(i+1)
-    print(f"Peek Queue: {queue.peek()}")
-    print(f"Queue empty? {queue.is_empty()}")
-    # Dequeue
-    for i in range(queue.length):
-        print(queue.dequeue(), end=" ")
+class TestMethods(unittest.TestCase):
 
-    print("")
-    print(f"Queue empty? {queue.is_empty()}")
+    # Test enqueue
+    def test_1(self):
+        self.queue = Queue()
+        self.queue.enqueue(5)
+        self.assertTrue(self.queue.length == 1)
+    # Test dequeue
+    def test_2(self):
+        self.queue = Queue()
+        self.queue.enqueue(5)
+        result = self.queue.dequeue()
+        self.assertTrue(result == 5)
+
+    # Test peek
+    def test_3(self):
+        self.queue = Queue()
+        self.queue.enqueue(5)
+        self.assertTrue(self.queue.peek() == 5)
+
+    # Test empty
+    def test_4(self):
+        self.queue = Queue()
+        self.queue.enqueue(5)
+        self.queue.empty()
+        self.assertTrue(self.queue.length == 0)
+
+    # Test is empty
+    def test_5(self):
+        self.queue = Queue()
+        self.assertTrue(self.queue.is_empty())
+
+
+# Run tests
+if __name__ == "__main__":
+    unittest.main(argv=[''], exit=False)

@@ -29,8 +29,9 @@ class LRUCache:
         # Return -1 if not in cache
         if key not in self.node_dict:
             return -1
+        # set node to find
         node = self.node_dict[key]
-        
+        # Find node
         if node:
             result = node.val
             self.delete(node)
@@ -42,18 +43,20 @@ class LRUCache:
 
     def put(self, key: int, value: int) -> None:
         """Put either adds or overrides a node"""
+        # If the node is already in the dict, update it so it does not drop off
         if key in self.node_dict:
             node = self.node_dict[key]
             node.val = value
             self.delete(node)
             self.add(node)
         else:
+            # If the list is at capacity, remove LRU
             if self.curr_size >= self.capacity:
                 lru_node = self.head.next
                 self.node_dict.pop(lru_node.key)
                 self.delete(lru_node)
                 self.curr_size -= 1
-            
+            # Add node
             new_node = Node(key, value)
             self.node_dict[key] = new_node
             self.add(new_node)
