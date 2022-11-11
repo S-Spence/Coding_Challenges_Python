@@ -29,12 +29,10 @@ Solution: A cycle would prevent the algorithm from being able to finish the cour
         
 
 """
+
 """
 BFS solution
-
 """
-
-
 def course_schedule(num_courses: int, pre_reqs: "list[int]") -> bool:
     """
     Determine if it is possible to finish all courses given a list of prerequisites
@@ -87,12 +85,8 @@ Notes: Every verex in isolation has what is known as an Indegree factor. This on
        from the graph and reduce the indegree value of any nodes that it was directing into. 
        You can take the values with a 0 indegree in any order.
        Think of the indegree 0 values as the vertices with no dependencies.
-       topological sort is applicable in DAGs (Directed Acyclic Graphs). This means the graph may not contain cycles.
-       
-
+       Topological sort is applicable in DAGs (Directed Acyclic Graphs). This means the graph may not contain cycles.
 """
-
-
 def course_schedule_topological(num_courses: int, pre_reqs: "list[int]") -> bool:
     """
     Use topological sort to determine if it is possible to complete all courses
